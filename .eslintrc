@@ -1,0 +1,15 @@
+{
+    "extends": ["wesbos"],
+    "rules": {
+        "prettier/prettier": "error",
+        "no-unused-vars": "warn",
+        "no-console": "off",
+        "func-names": "off",
+        "no-process-exit": "off",
+        "object-shorthand": "off",
+        "class-methods-use-this": "off",
+        "react/state-in-constructor": "off",
+        "react/destructuring-assignment": "off",
+        "no-multi-assign": "off"
+    }
+}

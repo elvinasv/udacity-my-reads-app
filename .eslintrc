@@ -10,6 +10,7 @@
         "class-methods-use-this": "off",
         "react/state-in-constructor": "off",
         "react/destructuring-assignment": "off",
-        "no-multi-assign": "off"
+        "no-multi-assign": "off",
+        "jsx-a11y/control-has-associated-label": "off"
     }
 }

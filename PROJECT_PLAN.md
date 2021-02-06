@@ -2,11 +2,11 @@
 
 ## Links
 
--   [Project page](https://classroom.udacity.com/nanodegrees/nd019/parts/57812373-5147-4152-a4f7-d2e164aba8a5/modules/69a69d44-f8a8-4214-95ff-3a5e8df4dd44/lessons/af43b9f8-6162-4c91-8462-f736f244f479/concepts/6ccc69ed-2d8b-451e-8031-e9ff0cdce7d4)
--   [Overview](https://classroom.udacity.com/nanodegrees/nd019/parts/57812373-5147-4152-a4f7-d2e164aba8a5/modules/69a69d44-f8a8-4214-95ff-3a5e8df4dd44/lessons/af43b9f8-6162-4c91-8462-f736f244f479/concepts/e7df4589-29d8-4d49-b760-a1db72d6cbdb)
--   Mock up tools - https://codingsans.com/blog/mockup-tools
-    -   https://www.figma.com/templates/wireframe-kits/
--   Refer to Asana.
+- [Project page](https://classroom.udacity.com/nanodegrees/nd019/parts/57812373-5147-4152-a4f7-d2e164aba8a5/modules/69a69d44-f8a8-4214-95ff-3a5e8df4dd44/lessons/af43b9f8-6162-4c91-8462-f736f244f479/concepts/6ccc69ed-2d8b-451e-8031-e9ff0cdce7d4)
+- [Overview](https://classroom.udacity.com/nanodegrees/nd019/parts/57812373-5147-4152-a4f7-d2e164aba8a5/modules/69a69d44-f8a8-4214-95ff-3a5e8df4dd44/lessons/af43b9f8-6162-4c91-8462-f736f244f479/concepts/e7df4589-29d8-4d49-b760-a1db72d6cbdb)
+- Mock up tools - https://codingsans.com/blog/mockup-tools
+  - https://www.figma.com/templates/wireframe-kits/
+- Refer to Asana.
 
 ## Component hierarchy
 
@@ -16,14 +16,13 @@
         ├── Header
         ├── BookShelf
             ├── BookShelfTitle
-            ├── BookList
-                ├── BookItem
-                ├── BookItem
-                ├── BookItem
+            ├── BookItem
+            ├── BookItem
+            ├── BookItem
    └── SearchForBook
         ├── SearchBar
         ├── SearchResult
-                ├── BookItem
+            ├── BookItem
 ```
 
 ## Data needed

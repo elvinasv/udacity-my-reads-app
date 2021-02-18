@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const SearchBar = () => (
-  <div className="search-books-bar">
-    <Link to="/">
-      <button className="close-search" type="button" aria-label="Close" />
-    </Link>
-    <div className="search-books-input-wrapper">
-      {/*
-NOTES: The search from BooksAPI is limited to a particular set of search terms.
-You can find these search terms here:
-https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
+const SearchBar = ({ onChange }) => {
+  const [inputValue, setInputValue] = useState('');
 
-However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-you don't find a specific author or title. Every search is limited by search terms.
-*/}
-      <input type="text" placeholder="Search by title or author" />
+  const handleSearchChange = (event) => {
+    setInputValue(event.target.value);
+
+    if (onChange) onChange(event.target.value);
+  };
+
+  return (
+    <div className="search-books-bar">
+      <Link to="/">
+        <button className="close-search" type="button" aria-label="Close" />
+      </Link>
+      <div className="search-books-input-wrapper">
+        <input
+          onChange={handleSearchChange}
+          type="text"
+          placeholder="Search by title or author"
+          value={inputValue}
+          maxLength={255}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
+SearchBar.propTypes = {
+  onChange: PropTypes.func,
+};
 
 export default SearchBar;

@@ -28,24 +28,25 @@ class SearchForBook extends React.Component {
 
     this.state = {
       searchedBooks: [],
+      searchQuery: '',
     };
   }
 
   handleSearchUpdate(searchQuery) {
+    this.setState(() => ({ searchQuery: searchQuery }));
+
     if (searchQuery) {
       this.searchBooksByQuery(searchQuery);
     } else {
-      this.setState(() => ({
-        searchedBooks: [],
-      }));
+      this.setState(() => ({ searchedBooks: [] }));
     }
   }
 
   searchBooksByQuery(searchQuery) {
-    BooksAPI.search(searchQuery)
+    BooksAPI.search(searchQuery?.trim?.())
       .then((data) => {
-        this.setState(() => ({
-          searchedBooks: data?.error ? [] : data,
+        this.setState((prevState) => ({
+          searchedBooks: data?.error || !prevState.searchQuery ? [] : data,
         }));
       })
       .catch((error) => {

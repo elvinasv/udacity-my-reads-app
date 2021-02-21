@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BookShelf from './BookShelf';
-import * as BooksAPI from '../api/BooksAPI';
 
 const WANT_TO_READ = 'wantToRead';
 const READ = 'read';
@@ -11,27 +11,8 @@ const CURRENTLY_READING = 'currentlyReading';
 const filterBookByShelf = (allBooks, shelfName) =>
   allBooks?.filter((book) => book?.shelf === shelfName);
 class BookList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-    };
-  }
-
-  componentDidMount() {
-    BooksAPI.getAll()
-      .then((data) => {
-        this.setState(() => ({
-          books: data,
-        }));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   render() {
-    const { books } = this.state;
+    const { books } = this.props;
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -59,5 +40,9 @@ class BookList extends React.Component {
     );
   }
 }
+
+BookList.propTypes = {
+  books: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default BookList;

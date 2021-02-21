@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
 import * as BooksAPI from '../api/BooksAPI';
@@ -45,13 +46,33 @@ class SearchForBook extends React.Component {
   searchBooksByQuery(searchQuery) {
     BooksAPI.search(searchQuery?.trim?.())
       .then((data) => {
-        this.setState((prevState) => ({
-          searchedBooks: data?.error || !prevState.searchQuery ? [] : data,
-        }));
+        this.updateBookList(data);
       })
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  updateBookList(availableBooks) {
+    const { selectedBooks } = this.props;
+
+    if (availableBooks?.error || this.state.searchQuery) {
+      this.setState(() => ({
+        searchedBooks: [],
+      }));
+    }
+
+    const amendedNewBooks = availableBooks?.reduce((accumulator, newBook) => {
+      const existingBook = selectedBooks?.filter(
+        (selectedBook) => selectedBook.id === newBook.id
+      );
+
+      return accumulator.concat(existingBook[0] || newBook);
+    }, []);
+
+    this.setState(() => ({
+      searchedBooks: amendedNewBooks,
+    }));
   }
 
   render() {
@@ -63,5 +84,9 @@ class SearchForBook extends React.Component {
     );
   }
 }
+
+SearchForBook.propTypes = {
+  selectedBooks: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default SearchForBook;

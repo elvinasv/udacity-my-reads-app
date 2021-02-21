@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BookShelfChanger = ({ currentShelf }) => (
+const BookShelfChanger = ({ currentShelf = 'none' }) => (
   <div>
     <div className="book-shelf-changer">
       <select defaultValue={currentShelf}>

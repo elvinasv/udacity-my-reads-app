@@ -3,12 +3,28 @@ import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
 import * as BooksAPI from '../api/BooksAPI';
 
+// http://davidwalsh.name/javascript-debounce-function
+function debounce(func, wait) {
+  let timeout;
+  return function () {
+    const context = this;
+    // eslint-disable-next-line prefer-rest-params
+    const args = arguments;
+    const later = function () {
+      timeout = null;
+      func.apply(context, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 class SearchForBook extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
-    this.searchBooksByQuery = this.searchBooksByQuery.bind(this);
+    this.searchBooksByQuery = debounce(this.searchBooksByQuery, 300);
 
     this.state = {
       searchedBooks: [],

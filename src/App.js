@@ -11,6 +11,7 @@ class BooksApp extends React.Component {
     this.state = {
       books: [],
     };
+    this.handleBookShelfChange = this.handleBookShelfChange.bind(this);
   }
 
   componentDidMount() {
@@ -25,16 +26,36 @@ class BooksApp extends React.Component {
       });
   }
 
+  handleBookShelfChange(book, newShelfValue) {
+    const oldBooks = this.state.books.filter(
+      (oldBook) => oldBook.id !== book.id
+    );
+    const updatedBook = { ...book, shelf: newShelfValue };
+
+    const booksToUpdate = [
+      ...oldBooks,
+      newShelfValue !== 'none' ? updatedBook : undefined,
+    ].filter(Boolean);
+
+    this.setState(() => ({ books: booksToUpdate }));
+  }
+
   render() {
     return (
       <Router>
         <div className="app">
           <Switch>
             <Route path="/search">
-              <SearchForBook selectedBooks={this.state.books} />
+              <SearchForBook
+                selectedBooks={this.state.books}
+                onBookShelfChange={this.handleBookShelfChange}
+              />
             </Route>
             <Route path="/">
-              <BookList books={this.state.books} />
+              <BookList
+                books={this.state.books}
+                onBookShelfChange={this.handleBookShelfChange}
+              />
             </Route>
           </Switch>
         </div>

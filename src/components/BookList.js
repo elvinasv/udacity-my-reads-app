@@ -12,7 +12,7 @@ const filterBookByShelf = (allBooks, shelfName) =>
   allBooks?.filter((book) => book?.shelf === shelfName);
 class BookList extends React.Component {
   render() {
-    const { books } = this.props;
+    const { books, onBookShelfChange: passedOnBookShelfChange } = this.props;
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -20,14 +20,20 @@ class BookList extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf title="Read" books={filterBookByShelf(books, READ)} />
+            <BookShelf
+              title="Read"
+              books={filterBookByShelf(books, READ)}
+              onBookShelfChange={passedOnBookShelfChange}
+            />
             <BookShelf
               title="Want to Read"
               books={filterBookByShelf(books, WANT_TO_READ)}
+              onBookShelfChange={passedOnBookShelfChange}
             />
             <BookShelf
               title="Currently Reading"
               books={filterBookByShelf(books, CURRENTLY_READING)}
+              onBookShelfChange={passedOnBookShelfChange}
             />
           </div>
         </div>
@@ -43,6 +49,7 @@ class BookList extends React.Component {
 
 BookList.propTypes = {
   books: PropTypes.arrayOf(PropTypes.object),
+  onBookShelfChange: PropTypes.func,
 };
 
 export default BookList;

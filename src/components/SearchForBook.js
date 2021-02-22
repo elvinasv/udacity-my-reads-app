@@ -56,10 +56,11 @@ class SearchForBook extends React.Component {
   updateBookList(availableBooks) {
     const { selectedBooks } = this.props;
 
-    if (availableBooks?.error || this.state.searchQuery) {
+    if (availableBooks?.error || !this.state.searchQuery) {
       this.setState(() => ({
         searchedBooks: [],
       }));
+      return;
     }
 
     const amendedNewBooks = availableBooks?.reduce((accumulator, newBook) => {
@@ -79,7 +80,10 @@ class SearchForBook extends React.Component {
     return (
       <div className="search-books">
         <SearchBar onChange={this.handleSearchUpdate} />
-        <SearchResult books={this.state.searchedBooks} />
+        <SearchResult
+          books={this.state.searchedBooks}
+          onBookShelfChange={this.props.onBookShelfChange}
+        />
       </div>
     );
   }
@@ -87,6 +91,7 @@ class SearchForBook extends React.Component {
 
 SearchForBook.propTypes = {
   selectedBooks: PropTypes.arrayOf(PropTypes.object),
+  onBookShelfChange: PropTypes.func,
 };
 
 export default SearchForBook;

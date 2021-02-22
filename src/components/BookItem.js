@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import BookShelfChanger from './BookShelfChanger';
 
-const BookItem = ({ book }) => {
+const BookItem = ({ book, onBookShelfChange }) => {
   const authorName = book.authors?.join?.('; ');
   const backgroundImageUrl = book.imageLinks?.thumbnail;
+
+  const handleBookShelfChange = useCallback(
+    (newShelf) => {
+      onBookShelfChange?.(book, newShelf);
+    },
+    [book, onBookShelfChange]
+  );
 
   return (
     <div className="book">
@@ -17,7 +24,10 @@ const BookItem = ({ book }) => {
             backgroundImage: `url(${backgroundImageUrl}`,
           }}
         />
-        <BookShelfChanger currentShelf={book.shelf} />
+        <BookShelfChanger
+          currentShelf={book.shelf}
+          onChange={handleBookShelfChange}
+        />
       </div>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{authorName}</div>
@@ -34,6 +44,7 @@ BookItem.propTypes = {
     }),
     shelf: PropTypes.string,
   }),
+  onBookShelfChange: PropTypes.func,
 };
 
 export default BookItem;

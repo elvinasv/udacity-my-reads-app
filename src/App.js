@@ -37,7 +37,9 @@ class BooksApp extends React.Component {
       newShelfValue !== 'none' ? updatedBook : undefined,
     ].filter(Boolean);
 
-    this.setState(() => ({ books: booksToUpdate }));
+    BooksAPI.update(book, newShelfValue).then(() => {
+      this.setState(() => ({ books: booksToUpdate }));
+    });
   }
 
   render() {

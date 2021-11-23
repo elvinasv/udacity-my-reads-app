@@ -12,8 +12,10 @@ const filterBookByShelf = (allBooks, shelfName) =>
     allBooks?.filter((book) => book?.shelf === shelfName);
 class BookList extends React.Component {
     render() {
-        const { books, onBookShelfChange: passedOnBookShelfChange } =
-            this.props;
+        const {
+            books,
+            onBookShelfChange: passedOnBookShelfChange,
+        } = this.props;
         return (
             <div className="list-books">
                 <div className="list-books-title">

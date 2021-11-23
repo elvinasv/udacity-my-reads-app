@@ -1,7 +1,6 @@
 {
     "extends": ["wesbos"],
     "rules": {
-        "prettier/prettier": "error",
         "no-unused-vars": "warn",
         "no-console": "off",
         "func-names": "off",
@@ -11,6 +10,15 @@
         "react/state-in-constructor": "off",
         "react/destructuring-assignment": "off",
         "no-multi-assign": "off",
-        "jsx-a11y/control-has-associated-label": "off"
+        "jsx-a11y/control-has-associated-label": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "tabWidth": 4,
+                "singleQuote": true,
+                "semi": true
+            }
+        ]
     }
 }
